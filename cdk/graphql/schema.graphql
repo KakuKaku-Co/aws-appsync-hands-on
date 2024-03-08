@@ -1,0 +1,12 @@
+type AppSyncDemo {
+    id: ID!
+    name: String!
+}
+
+type Query {
+    getAppSyncDemo(id: ID!): AppSyncDemo
+}
+
+type Mutation {
+    createAppSyncDemo(id: ID!, name: String!): AppSyncDemo
+}

@@ -1,0 +1,24 @@
+type Message {
+    messageId: String!
+    message: String!
+}
+
+type Query {
+    _dummy: String
+}
+
+type Mutation {
+    sendMessage(messageId: String!, message: String!): Message
+    sendMessageWithAuthentication(messageId: String!, message: String!): Message @auth(rules: [{ allow: private, provider: userPools }]
+  ) 
+}
+
+type Subscription {
+    addedMessage: Message @aws_subscribe(mutations: ["sendMessage"])
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}
